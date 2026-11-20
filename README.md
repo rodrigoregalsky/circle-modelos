@@ -29,7 +29,8 @@ proceso que los mantiene al día.
 
 ## Cómo se actualiza
 
-Todos los días (y a mano con *Run workflow*) corre `.github/workflows/actualizar.yml`:
+**Nada se actualiza solo.** Todos los días (y a mano con *Run workflow*) corre `.github/workflows/actualizar.yml`,
+que detecta, baja y prueba, pero **no publica ni cambia la ficha**:
 
 1. **Copia propia:** comprueba que los 9 archivos del release vigente estén y coincidan con la ficha. Si falta uno,
    registra el evento `SIN_VIGENTE`.
@@ -41,13 +42,18 @@ Todos los días (y a mano con *Run workflow*) corre `.github/workflows/actualiza
    mismos parámetros que la app, sobre el audio de `prueba/`, con el juego vigente y con el candidato:
    error de palabras de Parakeet y de Canary (48 frases), error de la cadena completa detector de voz + Parakeet,
    acierto del detector de voz, y separación de hablantes con un audio de dos voces.
-4. **Decisión:** solo si **ninguna** métrica empeora, publica el release `modelos-v(N+1)` con los 9 archivos, verifica
-   cada asset subido contra su huella y actualiza `modelos.json` (evento `MODELO_CAMBIO`). Si alguna empeora, deja la
-   vigente y lo registra (evento `PRUEBA_FALLO`); ese candidato no se vuelve a probar.
+4. **Resultado:** deja en `estado.json` el evento `MODELO_NUEVO` con la prueba («no empeora» o «da peor»). Si no
+   empeora, el candidato queda en `pendientes`. Cada candidato se prueba una sola vez.
 
-El servidor de CIRCLE lee `modelos.json` y `estado.json` una vez por día, comprueba por su cuenta que los archivos
-vigentes se puedan bajar, y avisa al Fundador solo cuando: cambió un modelo, la prueba de uno nuevo falló, o ya no hay
-un modelo vigente descargable.
+**Promover** (paso manual, recién cuando el Fundador probó el modelo en persona y lo aceptó): en la pestaña
+*Actions*, workflow **Promover modelo** → *Run workflow* → elegir el modelo. O en una PC:
+`python herramientas/actualizar.py --promover parakeet-v3`. Vuelve a probar, publica el release `modelos-v(N+1)` con los
+9 archivos, verifica cada asset contra su huella y actualiza `modelos.json` (evento `MODELO_CAMBIO`). Si la prueba de
+ese día da peor, no publica (salvo la casilla *forzar*).
+
+El servidor de CIRCLE lee solo `modelos.json`, `estado.json` y los datos del release (unos KB, sin bajar modelos), una
+vez por día, y avisa al Fundador solo cuando: hay un modelo nuevo y cómo le fue en la prueba, cambió el modelo vigente,
+o ya no hay un modelo vigente descargable.
 
 ## Licencia de este repositorio
 

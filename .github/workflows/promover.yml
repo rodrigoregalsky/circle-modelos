@@ -1,0 +1,53 @@
+# Paso MANUAL: promover un modelo nuevo ya probado, despues de que el Fundador lo probo en persona y lo acepto.
+# Vuelve a bajar el candidato, lo vuelve a probar contra el vigente, publica el release modelos-v(N+1) con los 9
+# archivos, verifica cada asset contra su SHA-256 y actualiza modelos.json. Los celulares lo bajan solos despues.
+name: Promover modelo
+
+on:
+  workflow_dispatch:
+    inputs:
+      modelo:
+        description: 'Modelo a promover (tiene que estar en "pendientes" de estado.json)'
+        required: true
+        type: choice
+        options: [parakeet-v3, canary-180m, silero-vad, titanet-small]
+      forzar:
+        description: 'Publicar aunque la prueba de hoy de peor (solo si el Fundador lo decidio asi)'
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: actualizar-modelos
+  cancel-in-progress: false
+
+jobs:
+  promover:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: herramientas/requirements.txt
+
+      - run: pip install -r herramientas/requirements.txt
+
+      - name: Probar de nuevo y publicar
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python herramientas/actualizar.py --promover "${{ inputs.modelo }}" ${{ inputs.forzar && '--forzar' || '' }}
+
+      - name: Guardar modelos.json y estado.json
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add estado.json modelos.json
+          git commit -m "Promovido ${{ inputs.modelo }}: $(python -c "import json;print(json.load(open('modelos.json',encoding='utf-8'))['release'])")"
+          git push

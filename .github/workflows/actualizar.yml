@@ -1,5 +1,6 @@
 # Revision diaria de los modelos de CIRCLE: copia propia entera, revision nueva en el origen, prueba con sherpa-onnx
-# y, solo si no empeora, release nuevo y ficha nueva. Ver README.md. Sin secretos propios: usa el GITHUB_TOKEN.
+# y resultado en estado.json. NUNCA publica ni cambia la ficha: eso es el workflow manual Promover modelo, despues de que
+# el Fundador prueba el modelo en persona y lo acepta. Ver README.md. Sin secretos propios: usa el GITHUB_TOKEN.
 name: Actualizar modelos
 
 on:
@@ -8,7 +9,7 @@ on:
   workflow_dispatch: {}
 
 permissions:
-  contents: write          # crear releases y guardar modelos.json / estado.json
+  contents: write          # guardar estado.json
 
 concurrency:
   group: actualizar-modelos
@@ -30,7 +31,7 @@ jobs:
       - name: Dependencias (sherpa-onnx 2.0.1, la misma version que la app)
         run: pip install -r herramientas/requirements.txt
 
-      - name: Revisar, probar y publicar si no empeora
+      - name: Revisar el origen y probar lo nuevo (no publica)
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python herramientas/actualizar.py
@@ -39,7 +40,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add estado.json modelos.json
+          git add estado.json
           if git diff --cached --quiet; then echo "sin cambios"; exit 0; fi
           git commit -m "Revision diaria de modelos: $(python -c "import json;print(json.load(open('estado.json',encoding='utf-8'))['resumen'][:120])")"
           git push

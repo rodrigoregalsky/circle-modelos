@@ -1,18 +1,20 @@
-"""Actualizacion diaria de los modelos de CIRCLE (la corre .github/workflows/actualizar.yml).
+"""Revision diaria de los modelos de CIRCLE (la corre .github/workflows/actualizar.yml).
 
+NADA se actualiza solo (Fundador, 20/11/2026). La revision diaria:
 1. Comprueba que la copia propia (los assets del release vigente de este repositorio) siga entera: cada archivo con su
-   tamano y su huella SHA-256 de la ficha (modelos.json).
+   tamano y su huella SHA-256 de la ficha (modelos.json). Si no, evento SIN_VIGENTE.
 2. Mira en el origen de cada modelo (Hugging Face o GitHub de sherpa-onnx) si hay una revision nueva del MISMO modelo,
    o si desaparecio. Si desaparecio, no pasa nada: los celulares siguen bajando de la copia propia.
-3. Si hay una revision nueva: la baja, la prueba con sherpa-onnx contra la vigente (herramientas/evaluar.py) y solo si
-   ninguna metrica empeora publica un release nuevo con los 9 archivos y actualiza la ficha. Si empeora, deja la vigente
-   y lo registra. Un candidato rechazado no se vuelve a probar.
-4. Un cambio de FAMILIA (otros archivos, otro tipo de modelo) nunca se hace solo: queda REQUIERE_PERSONA.
-5. Deja estado.json legible. El servidor de CIRCLE lo lee y avisa al Fundador solo con los eventos MODELO_CAMBIO,
-   PRUEBA_FALLO y SIN_VIGENTE.
+3. Si hay una revision nueva: la baja, la prueba con sherpa-onnx contra la vigente (herramientas/evaluar.py) y deja el
+   resultado en estado.json (evento MODELO_NUEVO, con la prueba). No publica ni cambia la ficha. Cada candidato se
+   prueba una sola vez.
+4. Un cambio de FAMILIA (otros archivos, otro tipo de modelo) queda REQUIERE_PERSONA: necesita codigo y una persona.
 
-Uso: python herramientas/actualizar.py [--sin-publicar]
-Necesita GH_TOKEN (el GITHUB_TOKEN del workflow) y el comando gh. Nada mas: no hay secretos propios.
+El cambio se hace recien cuando el Fundador prueba el modelo en persona y lo acepta, con el paso manual:
+    python herramientas/actualizar.py --promover <id>      (o el workflow "Promover modelo", a mano)
+que vuelve a probar, publica el release modelos-v(N+1), verifica cada asset y actualiza modelos.json (MODELO_CAMBIO).
+
+Necesita GH_TOKEN (el GITHUB_TOKEN del workflow) y el comando gh. No hay secretos propios.
 """
 import datetime
 import hashlib
@@ -247,29 +249,48 @@ def publicar(ficha, carpeta, version, notas):
     return etiqueta
 
 
-def main():
-    sin_publicar = '--sin-publicar' in sys.argv
+def cargar():
     ficha = json.load(open(FICHA, encoding='utf-8'))
     estado = json.load(open(ESTADO, encoding='utf-8')) if os.path.exists(ESTADO) else {}
-    eventos = estado.get('eventos', [])
-    rechazados = estado.get('rechazados', {})  # modelo -> [firmas]
-    hoy = ahora()
+    return ficha, estado
 
-    def evento(tipo, modelo=None, detalle='', prueba=None, eid=None):
+
+class Registro:
+    def __init__(self, estado, ficha):
+        self.eventos = estado.get('eventos', [])
+        self.ficha = ficha
+
+    def evento(self, tipo, modelo=None, detalle='', prueba=None, eid=None):
+        hoy = ahora()
         eid = eid or f"{tipo}:{modelo['id'] if modelo else '-'}:{hoy}"
-        if any(e['id'] == eid for e in eventos):
+        if any(e['id'] == eid for e in self.eventos):
             return
-        eventos.append({'id': eid, 'tipo': tipo, 'fecha': hoy, 'modelo': modelo['id'] if modelo else None,
-                        'nombre': modelo['nombre'] if modelo else None, 'detalle': detalle, 'prueba': prueba,
-                        'version': ficha['version']})
+        self.eventos.append({'id': eid, 'tipo': tipo, 'fecha': hoy, 'modelo': modelo['id'] if modelo else None,
+                             'nombre': modelo['nombre'] if modelo else None, 'detalle': detalle, 'prueba': prueba,
+                             'version': self.ficha['version']})
 
-    resultado = {'revisado_en': hoy, 'version': ficha['version'], 'release': ficha['release'], 'modelos': []}
+
+def guardar(resultado, estado, registro):
+    resultado['eventos'] = registro.eventos[-MAX_EVENTOS:]
+    resultado['probados'] = estado.get('probados', {})
+    resultado['pendientes'] = estado.get('pendientes', {})
+    json.dump(resultado, open(ESTADO, 'w', encoding='utf-8'), ensure_ascii=False, indent=2)
+    print(json.dumps({k: v for k, v in resultado.items() if k not in ('eventos', 'probados')}, ensure_ascii=False, indent=2))
+
+
+def revisar():
+    """La revision diaria. NUNCA publica ni cambia la ficha (Fundador, 20/11/2026): prueba y deja el resultado."""
+    ficha, estado = cargar()
+    reg = Registro(estado, ficha)
+    probados = estado.setdefault('probados', {})      # firma del candidato -> resultado de su prueba
+    pendientes = estado.setdefault('pendientes', {})  # modelo -> candidato probado que espera al Fundador
+    resultado = {'revisado_en': ahora(), 'version': ficha['version'], 'release': ficha['release'], 'modelos': []}
     copia = revisar_copia_propia(ficha)
     resultado['vigente_descargable'] = not copia
     resultado['copia_propia'] = copia or 'los 9 archivos coinciden con la ficha'
     if copia:
-        evento('SIN_VIGENTE', detalle='; '.join(f"{x['archivo']}: {x['detalle']}" for x in copia)[:400],
-               eid='SIN_VIGENTE:' + hashlib.sha256(json.dumps(copia, sort_keys=True).encode()).hexdigest()[:16])
+        reg.evento('SIN_VIGENTE', detalle='; '.join(f"{x['archivo']}: {x['detalle']}" for x in copia)[:400],
+                   eid='SIN_VIGENTE:' + hashlib.sha256(json.dumps(copia, sort_keys=True).encode()).hexdigest()[:16])
 
     candidatos = []
     for m in ficha['modelos']:
@@ -277,91 +298,97 @@ def main():
         r = revisar_origen(m, piezas)
         fila = {'id': m['id'], 'nombre': m['nombre'], 'estado': r['estado'], 'detalle': r['detalle']}
         if r['estado'] == 'CANDIDATO':
-            if r['candidato']['firma'] in rechazados.get(m['id'], []):
-                fila['estado'], fila['detalle'] = 'CANDIDATO_YA_RECHAZADO', r['detalle'] + '; ya se probo y empeoraba: se mantiene la vigente'
+            ya = probados.get(r['candidato']['firma'])
+            if ya:
+                fila['estado'] = 'CANDIDATO_PROBADO'
+                fila['detalle'] += ('; ya se probo: no empeora, espera que el Fundador lo pruebe y lo acepte' if ya['pasa']
+                                    else '; ya se probo: empeoraba, se mantiene la vigente')
+                fila['prueba'] = ya.get('prueba')
             else:
                 candidatos.append((m, r['candidato'], fila))
         resultado['modelos'].append(fila)
 
-    if candidatos and not copia:
+    if candidatos and copia:
+        for _, _, fila in candidatos:
+            fila['detalle'] += '; no se prueba todavia: la copia vigente no esta entera'
+    elif candidatos:
         trabajo = tempfile.mkdtemp(prefix='modelos-')
         vig = os.path.join(trabajo, 'vigente')
         armar(ficha, vig)
         m_vig = evaluar.evaluar(vig, ficha)
         resultado['prueba_vigente'] = {k: v for k, v in m_vig.items() if not k.endswith('_detalle')}
-        aceptados = []
         for m, cand, fila in candidatos:
             carpeta = os.path.join(trabajo, m['id'])
             try:
                 armar(ficha, carpeta, base=vig, reemplazos=cand['piezas'])
-                m_c = evaluar.evaluar(carpeta, ficha)
+                pasa, difs = evaluar.comparar(m_vig, evaluar.evaluar(carpeta, ficha))
+                res = resumen(difs, m['id'])
             except Exception as e:
-                fila['estado'], fila['detalle'] = 'CANDIDATO_FALLO', f'el candidato no se pudo bajar o no corrio: {str(e)[:200]}'
-                rechazados.setdefault(m['id'], []).append(cand['firma'])
-                evento('PRUEBA_FALLO', m, fila['detalle'], eid=f"PRUEBA_FALLO:{m['id']}:{cand['firma'][:16]}")
-                continue
-            pasa, difs = evaluar.comparar(m_vig, m_c)
+                pasa, difs, res = False, None, None
+                fila['detalle'] += f'; el candidato no se pudo bajar o no corrio: {str(e)[:200]}'
             fila['prueba'] = difs
+            fila['estado'] = 'CANDIDATO_PROBADO'
+            fila['detalle'] += ('; la prueba no empeora: espera que el Fundador lo pruebe y lo acepte' if pasa
+                                else '; la prueba dio peor: se mantiene la vigente')
+            probados[cand['firma']] = {'modelo': m['id'], 'pasa': pasa, 'prueba': difs, 'probado_en': ahora()}
             if pasa:
-                fila['estado'] = 'CANDIDATO_APROBADO'
-                aceptados.append((m, cand, fila, difs, carpeta))
-            else:
-                fila['estado'] = 'CANDIDATO_RECHAZADO'
-                fila['detalle'] += '; la prueba dio peor: se mantiene la vigente'
-                rechazados.setdefault(m['id'], []).append(cand['firma'])
-                evento('PRUEBA_FALLO', m, fila['detalle'], resumen(difs, m['id']), eid=f"PRUEBA_FALLO:{m['id']}:{cand['firma'][:16]}")
-        if aceptados and not sin_publicar:
-            final = os.path.join(trabajo, 'final')
-            reemplazos = {}
-            for _, cand, *_ in aceptados:
-                reemplazos.update(cand['piezas'])
-            if len(aceptados) == 1:
-                final = aceptados[0][4]
-            else:  # varios a la vez: el juego combinado tambien tiene que no empeorar
-                armar(ficha, final, base=vig, reemplazos=reemplazos)
-                pasa, _ = evaluar.comparar(m_vig, evaluar.evaluar(final, ficha))
-                if not pasa:
-                    for m, cand, fila, *_ in aceptados:
-                        fila['estado'], fila['detalle'] = 'ESPERA', 'aprobado solo, pero junto con otro empeoraba: se prueba de a uno'
-                    aceptados, reemplazos = aceptados[:1], dict(aceptados[0][1]['piezas'])
-                    final = aceptados[0][4]
-            nueva = json.loads(json.dumps(ficha))
-            nueva['version'] = ficha['version'] + 1
-            for p in nueva['piezas']:
-                if p['archivo'] in reemplazos:
-                    r = reemplazos[p['archivo']]
-                    p['tamano'], p['sha256'] = r['tamano'], r['sha256']
-                    if r.get('origen_actualizado'):
-                        p['origen_actualizado'] = r['origen_actualizado']
-            for m, cand, *_ in aceptados:
-                mm = next(x for x in nueva['modelos'] if x['id'] == m['id'])
-                if cand['revision']:
-                    mm['origen']['revision'] = cand['revision']
-            notas = 'Actualizacion automatica despues de la prueba (ninguna metrica empeoro): ' + \
-                    ', '.join(m['nombre'] for m, *_ in aceptados) + '. Licencias y atribuciones: ver ATRIBUCIONES.md.'
-            etiqueta = publicar(nueva, final, nueva['version'], notas)
-            nueva['release'] = etiqueta
-            nueva['publicado'] = hoy[:10]
-            json.dump(nueva, open(FICHA, 'w', encoding='utf-8'), ensure_ascii=False, indent=2)
-            ficha = nueva
-            resultado['version'], resultado['release'] = nueva['version'], etiqueta
-            for m, cand, fila, difs, _ in aceptados:
-                fila['estado'] = 'ACTUALIZADO'
-                fila['detalle'] += f'; aprobado y publicado en {etiqueta}'
-                evento('MODELO_CAMBIO', m, fila['detalle'], resumen(difs, m['id']), eid=f"MODELO_CAMBIO:{m['id']}:{cand['firma'][:16]}")
+                pendientes[m['id']] = {**cand, 'prueba': difs, 'probado_en': ahora()}
+            reg.evento('MODELO_NUEVO', m, fila['detalle'], {**(res or {}), 'pasa': pasa},
+                       eid=f"MODELO_NUEVO:{m['id']}:{cand['firma'][:16]}")
+            shutil.rmtree(carpeta, ignore_errors=True)
         shutil.rmtree(trabajo, ignore_errors=True)
-    elif candidatos:
-        for _, _, fila in candidatos:
-            fila['detalle'] += '; no se prueba: la copia vigente no esta entera'
 
-    hay_algo = [f for f in resultado['modelos'] if f['estado'] not in ('SIN_CAMBIOS',)]
-    resultado['resumen'] = ('todo vigente, sin cambios' if not hay_algo and not copia else
-                            '; '.join(f"{f['nombre']}: {f['estado']}" for f in hay_algo) or 'la copia propia tiene problemas')
-    resultado['eventos'] = eventos[-MAX_EVENTOS:]
-    resultado['rechazados'] = rechazados
-    json.dump(resultado, open(ESTADO, 'w', encoding='utf-8'), ensure_ascii=False, indent=2)
-    print(json.dumps({k: v for k, v in resultado.items() if k not in ('eventos', 'rechazados')}, ensure_ascii=False, indent=2))
+    hay = [f for f in resultado['modelos'] if f['estado'] != 'SIN_CAMBIOS']
+    resultado['resumen'] = ('todo vigente, sin cambios' if not hay and not copia else
+                            '; '.join(f"{f['nombre']}: {f['estado']}" for f in hay) or 'la copia propia tiene problemas')
+    guardar(resultado, estado, reg)
+
+
+def promover(modelo_id, forzar=False):
+    """Paso manual, despues de que el Fundador probo el modelo en persona y lo acepto: vuelve a bajar el candidato,
+    lo vuelve a probar contra el vigente, publica el release modelos-v(N+1) con los 9 archivos, verifica cada asset y
+    actualiza modelos.json. `forzar` publica aunque la prueba empeore (solo si el Fundador lo decidio asi)."""
+    ficha, estado = cargar()
+    reg = Registro(estado, ficha)
+    cand = estado.get('pendientes', {}).get(modelo_id)
+    if not cand:
+        sys.exit(f'No hay un candidato probado de {modelo_id} esperando (ver "pendientes" en estado.json).')
+    m = next(x for x in ficha['modelos'] if x['id'] == modelo_id)
+    trabajo = tempfile.mkdtemp(prefix='promover-')
+    vig, nuevo = os.path.join(trabajo, 'vigente'), os.path.join(trabajo, 'nuevo')
+    armar(ficha, vig)
+    piezas = json.loads(json.dumps(cand['piezas']))
+    armar(ficha, nuevo, base=vig, reemplazos=piezas)
+    pasa, difs = evaluar.comparar(evaluar.evaluar(vig, ficha), evaluar.evaluar(nuevo, ficha))
+    if not pasa and not forzar:
+        sys.exit('La prueba de hoy dio peor que la vigente: no se publica. ' + json.dumps(difs, ensure_ascii=False))
+    nueva = json.loads(json.dumps(ficha))
+    nueva['version'] = ficha['version'] + 1
+    for p in nueva['piezas']:
+        if p['archivo'] in piezas:
+            r = piezas[p['archivo']]
+            p['tamano'], p['sha256'] = r['tamano'], r['sha256']
+            if r.get('origen_actualizado'):
+                p['origen_actualizado'] = r['origen_actualizado']
+    if cand.get('revision'):
+        next(x for x in nueva['modelos'] if x['id'] == modelo_id)['origen']['revision'] = cand['revision']
+    etiqueta = publicar(nueva, nuevo, nueva['version'],
+                        f"{m['nombre']}: revision nueva, probada y aceptada por el Fundador. Licencias y atribuciones: ver ATRIBUCIONES.md.")
+    nueva['release'], nueva['publicado'] = etiqueta, ahora()[:10]
+    json.dump(nueva, open(FICHA, 'w', encoding='utf-8'), ensure_ascii=False, indent=2)
+    reg.ficha = nueva
+    reg.evento('MODELO_CAMBIO', m, f'publicado en {etiqueta}', {**resumen(difs, modelo_id), 'pasa': pasa},
+               eid=f"MODELO_CAMBIO:{modelo_id}:{etiqueta}")
+    estado['pendientes'].pop(modelo_id, None)
+    shutil.rmtree(trabajo, ignore_errors=True)
+    resultado = {k: v for k, v in estado.items() if k not in ('eventos', 'probados', 'pendientes')}
+    resultado.update({'version': nueva['version'], 'release': etiqueta,
+                      'resumen': f"{m['nombre']}: promovido a {etiqueta}"})
+    guardar(resultado, estado, reg)
 
 
 if __name__ == '__main__':
-    main()
+    if '--promover' in sys.argv:
+        promover(sys.argv[sys.argv.index('--promover') + 1], forzar='--forzar' in sys.argv)
+    else:
+        revisar()
