@@ -1,0 +1,155 @@
+{
+  "version": 3,
+  "release": "modelos-v3",
+  "publicado": "2026-11-20",
+  "nota": "Ficha de modelos de CIRCLE. Los celulares bajan cada pieza de la direccion \"url\" (releases de este repositorio) y verifican tamano y sha256. Para cambiar un modelo de la misma familia se cambia esta ficha, no la app. La actualiza sola herramientas/actualizar.py, solo despues de la prueba.",
+  "rutas": {
+    "vad": "silero_vad.onnx",
+    "asr_encoder": "parakeet-v3/encoder.int8.onnx",
+    "asr_decoder": "parakeet-v3/decoder.int8.onnx",
+    "asr_joiner": "parakeet-v3/joiner.int8.onnx",
+    "asr_tokens": "parakeet-v3/tokens.txt",
+    "asr_tipo": "nemo_transducer",
+    "voces": "nemo_en_titanet_small.onnx",
+    "es_encoder": "canary-180m/encoder.int8.onnx",
+    "es_decoder": "canary-180m/decoder.int8.onnx",
+    "es_tokens": "canary-180m/tokens.txt"
+  },
+  "modelos": [
+    {
+      "id": "parakeet-v3",
+      "nombre": "Parakeet v3 (voz a texto)",
+      "familia": "nemo-parakeet-tdt-0.6b-v3-int8",
+      "licencia": "CC-BY-4.0",
+      "origen": {
+        "sitio": "HF",
+        "repo": "csukuangfj/sherpa-onnx-nemo-parakeet-tdt-0.6b-v3-int8",
+        "revision": "2bda32ec70b097a55adaa07d9a7173915b43cc78"
+      },
+      "autor_original": "NVIDIA (nvidia/parakeet-tdt-0.6b-v3), convertido a ONNX int8 por el proyecto sherpa-onnx (k2-fsa)"
+    },
+    {
+      "id": "canary-180m",
+      "nombre": "Canary 180M flash (voz a texto en espanol)",
+      "familia": "nemo-canary-180m-flash-int8",
+      "licencia": "CC-BY-4.0",
+      "origen": {
+        "sitio": "HF",
+        "repo": "csukuangfj/sherpa-onnx-nemo-canary-180m-flash-en-es-de-fr-int8",
+        "revision": "9077164e0d3dd1d5353743e89ceaa1d3a770838c"
+      },
+      "autor_original": "NVIDIA (nvidia/canary-180m-flash), convertido a ONNX int8 por el proyecto sherpa-onnx (k2-fsa)"
+    },
+    {
+      "id": "silero-vad",
+      "nombre": "Silero VAD (detector de voz)",
+      "familia": "silero-vad",
+      "licencia": "MIT",
+      "origen": {
+        "sitio": "GH",
+        "repo": "k2-fsa/sherpa-onnx",
+        "etiqueta": "asr-models"
+      },
+      "autor_original": "Silero Team (snakers4/silero-vad)"
+    },
+    {
+      "id": "titanet-small",
+      "nombre": "TitaNet small (huella de voz)",
+      "familia": "nemo-titanet-small",
+      "licencia": "Apache-2.0",
+      "origen": {
+        "sitio": "GH",
+        "repo": "k2-fsa/sherpa-onnx",
+        "etiqueta": "speaker-recongition-models"
+      },
+      "autor_original": "NVIDIA (NeMo, titanet_small), convertido a ONNX por el proyecto sherpa-onnx (k2-fsa)"
+    }
+  ],
+  "piezas": [
+    {
+      "archivo": "silero_vad.onnx",
+      "tamano": 643854,
+      "sha256": "9e2449e1087496d8d4caba907f23e0bd3f78d91fa552479bb9c23ac09cbb1fd6",
+      "url": "https://github.com/rodrigoregalsky/circle-modelos/releases/download/modelos-v3/silero_vad.onnx",
+      "modelo": "silero-vad",
+      "origen": "silero_vad.onnx",
+      "origen_actualizado": "2025-07-11T07:04:32Z"
+    },
+    {
+      "archivo": "nemo_en_titanet_small.onnx",
+      "tamano": 40257283,
+      "sha256": "ad4a1802485d8b34c722d2a9d04249662f2ece5d28a7a039063ca22f515a789e",
+      "url": "https://github.com/rodrigoregalsky/circle-modelos/releases/download/modelos-v3/nemo_en_titanet_small.onnx",
+      "modelo": "titanet-small",
+      "origen": "nemo_en_titanet_small.onnx",
+      "origen_actualizado": "2024-10-14T07:03:03Z"
+    },
+    {
+      "archivo": "parakeet-v3/tokens.txt",
+      "tamano": 93939,
+      "sha256": "d58544679ea4bc6ac563d1f545eb7d474bd6cfa467f0a6e2c1dc1c7d37e3c35d",
+      "url": "https://github.com/rodrigoregalsky/circle-modelos/releases/download/modelos-v3/parakeet-v3.tokens.txt",
+      "modelo": "parakeet-v3",
+      "origen": "tokens.txt"
+    },
+    {
+      "archivo": "parakeet-v3/decoder.int8.onnx",
+      "tamano": 11845275,
+      "sha256": "179e50c43d1a9de79c8a24149a2f9bac6eb5981823f2a2ed88d655b24248db4e",
+      "url": "https://github.com/rodrigoregalsky/circle-modelos/releases/download/modelos-v3/parakeet-v3.decoder.int8.onnx",
+      "modelo": "parakeet-v3",
+      "origen": "decoder.int8.onnx"
+    },
+    {
+      "archivo": "parakeet-v3/joiner.int8.onnx",
+      "tamano": 6355277,
+      "sha256": "3164c13fc2821009440d20fcb5fdc78bff28b4db2f8d0f0b329101719c0948b3",
+      "url": "https://github.com/rodrigoregalsky/circle-modelos/releases/download/modelos-v3/parakeet-v3.joiner.int8.onnx",
+      "modelo": "parakeet-v3",
+      "origen": "joiner.int8.onnx"
+    },
+    {
+      "archivo": "parakeet-v3/encoder.int8.onnx",
+      "tamano": 652184281,
+      "sha256": "acfc2b4456377e15d04f0243af540b7fe7c992f8d898d751cf134c3a55fd2247",
+      "url": "https://github.com/rodrigoregalsky/circle-modelos/releases/download/modelos-v3/parakeet-v3.encoder.int8.onnx",
+      "modelo": "parakeet-v3",
+      "origen": "encoder.int8.onnx"
+    },
+    {
+      "archivo": "canary-180m/tokens.txt",
+      "tamano": 53555,
+      "sha256": "2dae6fc7815f9640645e0c765522b278ee0cef49b482d91f6913e334628d3e77",
+      "url": "https://github.com/rodrigoregalsky/circle-modelos/releases/download/modelos-v3/canary-180m.tokens.txt",
+      "modelo": "canary-180m",
+      "origen": "tokens.txt"
+    },
+    {
+      "archivo": "canary-180m/decoder.int8.onnx",
+      "tamano": 74437848,
+      "sha256": "e41a2ab9c0c2fe81a1e8ade5a45fb02a74bc4db7d1f91b89a54a25e2cf79cba2",
+      "url": "https://github.com/rodrigoregalsky/circle-modelos/releases/download/modelos-v3/canary-180m.decoder.int8.onnx",
+      "modelo": "canary-180m",
+      "origen": "decoder.int8.onnx"
+    },
+    {
+      "archivo": "canary-180m/encoder.int8.onnx",
+      "tamano": 132678643,
+      "sha256": "7a75b4e2a5857a6dcc0819503bbe3fad66943db4a3ccf21d3f27c633667d303f",
+      "url": "https://github.com/rodrigoregalsky/circle-modelos/releases/download/modelos-v3/canary-180m.encoder.int8.onnx",
+      "modelo": "canary-180m",
+      "origen": "encoder.int8.onnx"
+    }
+  ],
+  "compilacion": [
+    {
+      "archivo": "sherpa-onnx-2.0.1.aar",
+      "tamano": 49441341,
+      "sha256": "a8d09d1d32f3eb8520482c6d3d43fae674681c5b050385967c70a3c2c9bf0ee7",
+      "url": "https://github.com/rodrigoregalsky/circle-modelos/releases/download/modelos-v3/sherpa-onnx-2.0.1.aar",
+      "licencia": "Apache-2.0",
+      "origen": "https://github.com/k2-fsa/sherpa-onnx/releases/download/v2.0.1/sherpa-onnx-2.0.1.aar",
+      "nota": "Libreria de la app (se usa al compilar, no la bajan los celulares). Nunca se actualiza sola: cambiarla es cambiar codigo."
+    }
+  ]
+}

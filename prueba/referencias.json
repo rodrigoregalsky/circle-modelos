@@ -1,0 +1,488 @@
+{
+ "fuente": "VoxPopuli (facebook/voxpopuli en Hugging Face, revision 42f01879c780b4a2e90ec0b4f616c2ece526e4f1), idioma es, particion test. Licencia CC0 1.0.",
+ "frases": [
+  {
+   "archivo": "es_01.flac",
+   "audio_id": "20150521-0900-PLENARY-4-es_20150521-10:12:38_1",
+   "hablante": "125006",
+   "genero": "male",
+   "segundos": 9.6,
+   "texto": "Necesitamos más Europa y poner los recursos necesarios para construir una Unión capaz de hacer frente a los retos que surjan para dar respuesta a las necesidades de los ciudadanos.",
+   "texto_normalizado": "necesitamos más europa y poner los recursos necesarios para construir una unión capaz de hacer frente a los retos que surjan para dar respuesta a las necesidades de los ciudadanos."
+  },
+  {
+   "archivo": "es_02.flac",
+   "audio_id": "20150521-0900-PLENARY-4-es_20150521-10:12:38_2",
+   "hablante": "125006",
+   "genero": "male",
+   "segundos": 3.16,
+   "texto": "No podremos hacerla fuerte sin consolidar sus estructuras.",
+   "texto_normalizado": "no podremos hacerla fuerte sin consolidar sus estructuras."
+  },
+  {
+   "archivo": "es_03.flac",
+   "audio_id": "20140918-0900-PLENARY-7-es_20140918-11:27:34_0",
+   "hablante": "125052",
+   "genero": "male",
+   "segundos": 10.78,
+   "texto": "Señora Presidenta, este Parlamento ha adoptado numerosas resoluciones sobre Bangladés en los últimos años.",
+   "texto_normalizado": "señora presidenta este parlamento ha adoptado numerosas resoluciones sobre bangladés en los últimos años."
+  },
+  {
+   "archivo": "es_04.flac",
+   "audio_id": "20140918-0900-PLENARY-7-es_20140918-11:27:34_1",
+   "hablante": "125052",
+   "genero": "male",
+   "segundos": 3.18,
+   "texto": "Sin embargo, la situación sigue siendo preocupante.",
+   "texto_normalizado": "sin embargo la situación sigue siendo preocupante."
+  },
+  {
+   "archivo": "es_05.flac",
+   "audio_id": "20180116-0900-PLENARY-14-es_20180116-15:40:15_10",
+   "hablante": "39713",
+   "genero": "female",
+   "segundos": 7.16,
+   "texto": "en este sentido, la cooperación de la Unión Europea tiene un rol central por su alto impacto y valor político.",
+   "texto_normalizado": "en este sentido la cooperación de la unión europea tiene un rol central por su alto impacto y valor político."
+  },
+  {
+   "archivo": "es_06.flac",
+   "audio_id": "20180116-0900-PLENARY-14-es_20180116-15:40:15_3",
+   "hablante": "39713",
+   "genero": "female",
+   "segundos": 9.58,
+   "texto": "El reto, y siguiente paso, es llegar a las zonas más apartadas del país y cambiar las condiciones que han llevado a la propagación de la violencia.",
+   "texto_normalizado": "el reto y siguiente paso es llegar a las zonas más apartadas del país y cambiar las condiciones que han llevado a la propagación de la violencia."
+  },
+  {
+   "archivo": "es_07.flac",
+   "audio_id": "20131022-0900-PLENARY-20-es_20131022-21:29:51_1",
+   "hablante": "28409",
+   "genero": "male",
+   "segundos": 10.1,
+   "texto": "Votó a favor de la sostenibilidad y no a favor de los intereses de una parte del sector, de una parte de la flota, que, además, es la más poderosa. Y esto es lo que hoy tenemos que rubricar.",
+   "texto_normalizado": "votó a favor de la sostenibilidad y no a favor de los intereses de una parte del sector de una parte de la flota que además es la más poderosa. y esto es lo que hoy tenemos que rubricar."
+  },
+  {
+   "archivo": "es_08.flac",
+   "audio_id": "20131022-0900-PLENARY-20-es_20131022-21:29:51_10",
+   "hablante": "28409",
+   "genero": "male",
+   "segundos": 4.26,
+   "texto": "Tenemos la oportunidad de no poner más dinero en esa sobrecapacidad",
+   "texto_normalizado": "tenemos la oportunidad de no poner más dinero en esa sobrecapacidad;"
+  },
+  {
+   "archivo": "es_09.flac",
+   "audio_id": "20130521-0900-PLENARY-4-es_20130521-10:22:11_1",
+   "hablante": "97170",
+   "genero": "male",
+   "segundos": 4.12,
+   "texto": "Y, lamentablemente, sus acuerdos no se han llevado casi nunca a la práctica.",
+   "texto_normalizado": "y lamentablemente sus acuerdos no se han llevado casi nunca a la práctica."
+  },
+  {
+   "archivo": "es_10.flac",
+   "audio_id": "20130521-0900-PLENARY-4-es_20130521-10:22:11_2",
+   "hablante": "97170",
+   "genero": "male",
+   "segundos": 9.1,
+   "texto": "En el borrador que circula para la próxima cumbre europea se cifra en más de un billón de euros lo que pierden las arcas públicas europeas.",
+   "texto_normalizado": "en el borrador que circula para la próxima cumbre europea se cifra en más de un billón de euros lo que pierden las arcas públicas europeas."
+  },
+  {
+   "archivo": "es_11.flac",
+   "audio_id": "20101215-0900-PLENARY-7-es_20101215-13:09:30_10",
+   "hablante": "105596",
+   "genero": "male",
+   "segundos": 3.76,
+   "texto": "Aquí dentro todos sufrimos, pero no nos quejamos.",
+   "texto_normalizado": "aquí dentro todos sufrimos pero no nos quejamos."
+  },
+  {
+   "archivo": "es_12.flac",
+   "audio_id": "20101215-0900-PLENARY-7-es_20101215-13:09:30_15",
+   "hablante": "105596",
+   "genero": "male",
+   "segundos": 10.78,
+   "texto": "Quinto, aceptar públicamente que todos los cubanos residentes en la diáspora tienen el derecho a participar en la vida cultural, económica, política y social de Cuba.",
+   "texto_normalizado": "quinto aceptar públicamente que todos los cubanos residentes en la diáspora tienen el derecho a participar en la vida cultural económica política y social de cuba."
+  },
+  {
+   "archivo": "es_13.flac",
+   "audio_id": "20140116-0900-PLENARY-4-es_20140116-11:26:20_0",
+   "hablante": "119435",
+   "genero": "male",
+   "segundos": 6.28,
+   "texto": "Señora Presidenta, parece que todo este debate es por un proyecto de ley en España y por eso voy a hablar en español.",
+   "texto_normalizado": "señora presidenta parece que todo este debate es por un proyecto de ley en españa y por eso voy a hablar en español."
+  },
+  {
+   "archivo": "es_14.flac",
+   "audio_id": "20140116-0900-PLENARY-4-es_20140116-11:26:20_1",
+   "hablante": "119435",
+   "genero": "male",
+   "segundos": 5.32,
+   "texto": "En la Edad Media, Santo Tomás de Aquino pensaba que la vida humana no comenzaba con la concepción",
+   "texto_normalizado": "en la edad media santo tomás de aquino pensaba que la vida humana no comenzaba con la concepción;"
+  },
+  {
+   "archivo": "es_15.flac",
+   "audio_id": "20130206-0900-PLENARY-12-es_20130206-18:08:49_0",
+   "hablante": "96812",
+   "genero": "male",
+   "segundos": 6.36,
+   "texto": "Todos estamos informados, efectivamente, de la secuencia fáctica, lo que no resta gravedad a la cuestión de fondo.",
+   "texto_normalizado": "todos estamos informados efectivamente de la secuencia fáctica lo que no resta gravedad a la cuestión de fondo."
+  },
+  {
+   "archivo": "es_16.flac",
+   "audio_id": "20130206-0900-PLENARY-12-es_20130206-18:08:49_2",
+   "hablante": "96812",
+   "genero": "male",
+   "segundos": 10.32,
+   "texto": "de cada una de las fuerzas políticas que concurren en un proceso electoral y, en particular, aquellas que se encuentran en la oposición, este asunto pueda ser traído al Parlamento Europeo y debatido.",
+   "texto_normalizado": "de cada una de las fuerzas políticas que concurren en un proceso electoral y en particular aquellas que se encuentran en la oposición este asunto pueda ser traído al parlamento europeo y debatido."
+  },
+  {
+   "archivo": "es_17.flac",
+   "audio_id": "20201019-0900-PLENARY-es_20201019-17:29:40_0",
+   "hablante": "204413",
+   "genero": "male",
+   "segundos": 10.36,
+   "texto": "Señora presidenta, voy a tomar la palabra en nombre de mi compañero y ponente de este informe, Ibán García del Blanco, que no puede estar hoy aquí en el Pleno y a quien hay que agradecerle el inmenso trabajo realizado.",
+   "texto_normalizado": "señora presidenta voy a tomar la palabra en nombre de mi compañero y ponente de este informe ibán garcía del blanco que no puede estar hoy aquí en el pleno y a quien hay que agradecerle el inmenso trabajo realizado."
+  },
+  {
+   "archivo": "es_18.flac",
+   "audio_id": "20201019-0900-PLENARY-es_20201019-17:29:40_1",
+   "hablante": "204413",
+   "genero": "male",
+   "segundos": 9.26,
+   "texto": "El marco de principios éticos aplicables a la inteligencia artificial es el primer informe de iniciativa legislativa en el paquete sobre inteligencia artificial, elaborado en el Parlamento.",
+   "texto_normalizado": "el marco de principios éticos aplicables a la inteligencia artificial es el primer informe de iniciativa legislativa en el paquete sobre inteligencia artificial elaborado en el parlamento."
+  },
+  {
+   "archivo": "es_19.flac",
+   "audio_id": "20100615-0900-PLENARY-12-es_20100615-18:01:07_13",
+   "hablante": "103046",
+   "genero": "male",
+   "segundos": 10.24,
+   "texto": "Como parte de este proceso, el Consejo está preparado para empezar las discusiones con el Parlamento Europeo sobre el paquete legislativo Lisboa.",
+   "texto_normalizado": "como parte de este proceso el consejo está preparado para empezar las discusiones con el parlamento europeo sobre el paquete legislativo lisboa."
+  },
+  {
+   "archivo": "es_20.flac",
+   "audio_id": "20100615-0900-PLENARY-12-es_20100615-18:01:07_5",
+   "hablante": "103046",
+   "genero": "male",
+   "segundos": 5.16,
+   "texto": "La Comisión todavía no ha presentado al día de hoy este examen.",
+   "texto_normalizado": "la comisión todavía no ha presentado al día de hoy este examen."
+  },
+  {
+   "archivo": "es_21.flac",
+   "audio_id": "20141021-0900-PLENARY-5-es_20141021-10:55:59_2",
+   "hablante": "103488",
+   "genero": "male",
+   "segundos": 7.88,
+   "texto": "Podría volver a repetirles que el exceso de austeridad nos sigue asfixiando económicamente en la Unión Europea y que sigue provocando los mayores índices de desempleo de nuestra historia.",
+   "texto_normalizado": "podría volver a repetirles que el exceso de austeridad nos sigue asfixiando económicamente en la unión europea y que sigue provocando los mayores índices de desempleo de nuestra historia."
+  },
+  {
+   "archivo": "es_22.flac",
+   "audio_id": "20141021-0900-PLENARY-5-es_20141021-10:55:59_3",
+   "hablante": "103488",
+   "genero": "male",
+   "segundos": 10.3,
+   "texto": "Podría volver a decirles que la estrategia de devaluación salarial salvaje que estamos aplicando para ganar competitividad nos está haciendo más dependientes de las coyunturas económicas de fuera, pero también nos está empobreciendo dentro.",
+   "texto_normalizado": "podría volver a decirles que la estrategia de devaluación salarial salvaje que estamos aplicando para ganar competitividad nos está haciendo más dependientes de las coyunturas económicas de fuera pero también nos está empobreciendo dentro."
+  },
+  {
+   "archivo": "es_23.flac",
+   "audio_id": "20171025-0900-PLENARY-19-es_20171025-17:15:43_1",
+   "hablante": "124972",
+   "genero": "male",
+   "segundos": 11.56,
+   "texto": "Y le hemos preguntado muchas veces a la Comisión Europea cuáles son los criterios, básicamente durante cuánto tiempo y a qué nivel debe estar ese nivel de superávit para que ellos activen el MIP.",
+   "texto_normalizado": "y le hemos preguntado muchas veces a la comisión europea cuáles son los criterios básicamente durante cuánto tiempo y a qué nivel debe estar ese nivel de superávit para que ellos activen el mip."
+  },
+  {
+   "archivo": "es_24.flac",
+   "audio_id": "20171025-0900-PLENARY-19-es_20171025-17:15:43_3",
+   "hablante": "124972",
+   "genero": "male",
+   "segundos": 7.5,
+   "texto": "Pero estoy totalmente de acuerdo con el diputado en que esa cuestión debería activarse, porque es uno de los desequilibrios principales que tiene en estos momentos la zona del euro.",
+   "texto_normalizado": "pero estoy totalmente de acuerdo con el diputado en que esa cuestión debería activarse porque es uno de los desequilibrios principales que tiene en estos momentos la zona del euro."
+  },
+  {
+   "archivo": "es_25.flac",
+   "audio_id": "20160706-0900-PLENARY-16-es_20160706-17:24:24_1",
+   "hablante": "125050",
+   "genero": "female",
+   "segundos": 9.88,
+   "texto": "Lo reconoce, efectivamente, este último informe del Cuarteto Israel debe cesar ya en su política de construcción y expansión de los asentamientos de colonos.",
+   "texto_normalizado": "lo reconoce efectivamente este último informe del cuarteto israel debe cesar ya en su política de construcción y expansión de los asentamientos de colonos."
+  },
+  {
+   "archivo": "es_26.flac",
+   "audio_id": "20160706-0900-PLENARY-16-es_20160706-17:24:24_3",
+   "hablante": "125050",
+   "genero": "female",
+   "segundos": 10.36,
+   "texto": "El pueblo palestino necesita que actores como la Unión Europea pongan fin a su complicidad ante las violaciones del Derecho internacional que continuamente perpetra Israel.",
+   "texto_normalizado": "el pueblo palestino necesita que actores como la unión europea pongan fin a su complicidad ante las violaciones del derecho internacional que continuamente perpetra israel."
+  },
+  {
+   "archivo": "es_27.flac",
+   "audio_id": "20170613-0900-PLENARY-4-es_20170613-10:45:47_2",
+   "hablante": "131749",
+   "genero": "female",
+   "segundos": 4.8,
+   "texto": "En España, Rajoy dice que hace falta un cambio y, sin embargo, castiga el autoconsumo.",
+   "texto_normalizado": "en españa rajoy dice que hace falta un cambio y sin embargo castiga el autoconsumo."
+  },
+  {
+   "archivo": "es_28.flac",
+   "audio_id": "20170613-0900-PLENARY-4-es_20170613-10:45:47_3",
+   "hablante": "131749",
+   "genero": "female",
+   "segundos": 6.78,
+   "texto": "Aquí, Cañete abre las puertas a los lobbies energéticos, los más contaminantes del planeta.",
+   "texto_normalizado": "aquí cañete abre las puertas a los lobbies energéticos los más contaminantes del planeta."
+  },
+  {
+   "archivo": "es_29.flac",
+   "audio_id": "20111212-0900-PLENARY-12-es_20111212-19:07:42_3",
+   "hablante": "96806",
+   "genero": "female",
+   "segundos": 5.9,
+   "texto": "Hoy hemos dado un gran paso más en la defensa y protección de quienes más lo",
+   "texto_normalizado": "hoy hemos dado un gran paso más en la defensa y protección de quienes más lo"
+  },
+  {
+   "archivo": "es_30.flac",
+   "audio_id": "20111212-0900-PLENARY-12-es_20111212-19:07:42_4",
+   "hablante": "96806",
+   "genero": "female",
+   "segundos": 9.92,
+   "texto": "merecen. Y me gustaría terminar mi intervención con tres palabras que son el faro de mi trabajo y de mi vida libertad, justicia y dignidad.",
+   "texto_normalizado": "merecen. y me gustaría terminar mi intervención con tres palabras que son el faro de mi trabajo y de mi vida libertad justicia y dignidad."
+  },
+  {
+   "archivo": "es_31.flac",
+   "audio_id": "20171004-0900-PLENARY-3-es_20171004-10:28:48_2",
+   "hablante": "125048",
+   "genero": "male",
+   "segundos": 7.16,
+   "texto": "No hemos podido votar y, además, el Gobierno de España siempre se ha negado a un referéndum sobre monarquía o república.",
+   "texto_normalizado": "no hemos podido votar y además el gobierno de españa siempre se ha negado a un referéndum sobre monarquía o república."
+  },
+  {
+   "archivo": "es_32.flac",
+   "audio_id": "20171004-0900-PLENARY-3-es_20171004-10:28:48_4",
+   "hablante": "125048",
+   "genero": "female",
+   "segundos": 4.4,
+   "texto": "Vayamos a un proceso constituyente y vayamos a una república federal.",
+   "texto_normalizado": "vayamos a un proceso constituyente y vayamos a una república federal."
+  },
+  {
+   "archivo": "es_33.flac",
+   "audio_id": "20090203-0900-PLENARY-13-es_20090203-21:32:24_1",
+   "hablante": "1313",
+   "genero": "female",
+   "segundos": 6.16,
+   "texto": "En esta última ampliación hacia el Este la realidad se ha vuelto forzosamente mucho más compleja.",
+   "texto_normalizado": "en esta última ampliación hacia el este la realidad se ha vuelto forzosamente mucho más compleja."
+  },
+  {
+   "archivo": "es_34.flac",
+   "audio_id": "20090203-0900-PLENARY-13-es_20090203-21:32:24_10",
+   "hablante": "1313",
+   "genero": "female",
+   "segundos": 11.2,
+   "texto": "Considero que conviene aprovechar la inercia y continuar la difusión de ese diálogo para crear mecanismos de control a escala europea con vistas a la protección de las minorías.",
+   "texto_normalizado": "considero que conviene aprovechar la inercia y continuar la difusión de ese diálogo para crear mecanismos de control a escala europea con vistas a la protección de las minorías."
+  },
+  {
+   "archivo": "es_35.flac",
+   "audio_id": "20180116-0900-PLENARY-18-es_20180116-21:49:19_1",
+   "hablante": "125043",
+   "genero": "female",
+   "segundos": 9.52,
+   "texto": "Creo que es fundamental que consigamos un capítulo de desarrollo sostenible que tenga el contenido adecuado y que garantice su implementación.",
+   "texto_normalizado": "creo que es fundamental que consigamos un capítulo de desarrollo sostenible que tenga el contenido adecuado y que garantice su implementación."
+  },
+  {
+   "archivo": "es_36.flac",
+   "audio_id": "20180116-0900-PLENARY-18-es_20180116-21:49:19_4",
+   "hablante": "125043",
+   "genero": "female",
+   "segundos": 11.92,
+   "texto": "¿Cómo podríamos educar a nuestros hijos si no tuviéramos a la vez estímulos positivos y estímulos negativos no para aplicarlos, sino para evitar esas conductas innecesarias y negativas?",
+   "texto_normalizado": "cómo podríamos educar a nuestros hijos si no tuviéramos a la vez estímulos positivos y estímulos negativos no para aplicarlos sino para evitar esas conductas innecesarias y negativas?"
+  },
+  {
+   "archivo": "es_37.flac",
+   "audio_id": "20130416-0900-PLENARY-11-es_20130416-17:20:33_0",
+   "hablante": "111019",
+   "genero": "female",
+   "segundos": 11.78,
+   "texto": "Señora Presidenta, Señorías, el objetivo del procedimiento de aprobación de la gestión de las cuentas europeas es asegurar que el dinero público de los contribuyentes se utiliza de forma óptima.",
+   "texto_normalizado": "señora presidenta señorías el objetivo del procedimiento de aprobación de la gestión de las cuentas europeas es asegurar que el dinero público de los contribuyentes se utiliza de forma óptima."
+  },
+  {
+   "archivo": "es_38.flac",
+   "audio_id": "20130416-0900-PLENARY-11-es_20130416-17:20:33_14",
+   "hablante": "111019",
+   "genero": "female",
+   "segundos": 6.9,
+   "texto": "pero menos en estos momentos tan difíciles, podemos permitir que el uso de los recursos no sea óptimo. Ahora, más",
+   "texto_normalizado": "señorías nunca pero menos en estos momentos tan difíciles podemos permitir que el uso de los recursos no sea óptimo."
+  },
+  {
+   "archivo": "es_39.flac",
+   "audio_id": "20131024-0900-PLENARY-3-es_20131024-08:59:53_11",
+   "hablante": "28390",
+   "genero": "female",
+   "segundos": 9.1,
+   "texto": "Es decir, estamos hablando de temas ya muy debatidos y se trata ahora de que el Parlamento dé un impulso nuevo, para que lo que decidamos sea realmente eficiente.",
+   "texto_normalizado": "es decir estamos hablando de temas ya muy debatidos y se trata ahora de que el parlamento dé un impulso nuevo para que lo que decidamos sea realmente eficiente."
+  },
+  {
+   "archivo": "es_40.flac",
+   "audio_id": "20131024-0900-PLENARY-3-es_20131024-08:59:53_3",
+   "hablante": "28390",
+   "genero": "female",
+   "segundos": 7.34,
+   "texto": "yo misma lo he dicho— podría haberse hecho antes, probablemente sin ningún problema habríamos ganado tiempo, pero las circunstancias son las que son.",
+   "texto_normalizado": "yo misma lo he dicho podría haberse hecho antes probablemente sin ningún problema; habríamos ganado tiempo pero las circunstancias son las que son."
+  },
+  {
+   "archivo": "es_41.flac",
+   "audio_id": "20140716-0900-PLENARY-16-es_20140716-19:12:00_0",
+   "hablante": "125033",
+   "genero": "female",
+   "segundos": 10.12,
+   "texto": "Señora Presidenta, el muro de Israel vulnera la legalidad internacional y los principios de la Carta de las Naciones Unidas, divide familias y pueblos y hace la vida normal impracticable.",
+   "texto_normalizado": "señora presidenta el muro de israel vulnera la legalidad internacional y los principios de la carta de las naciones unidas divide familias y pueblos y hace la vida normal impracticable."
+  },
+  {
+   "archivo": "es_42.flac",
+   "audio_id": "20140716-0900-PLENARY-16-es_20140716-19:12:00_1",
+   "hablante": "125033",
+   "genero": "male",
+   "segundos": 3.32,
+   "texto": "El muro de Israel es ilegal —y no lo digo yo.",
+   "texto_normalizado": "el muro de israel es ilegal y no lo digo yo."
+  },
+  {
+   "archivo": "es_43.flac",
+   "audio_id": "20111025-0900-PLENARY-12-es_20111025-17:54:27_3",
+   "hablante": "96765",
+   "genero": "female",
+   "segundos": 10.06,
+   "texto": "Y esta agenda va por buen camino, y solo trabajando juntos, con un mercado único reforzado, conseguiremos este objetivo.",
+   "texto_normalizado": "y esta agenda va por buen camino y solo trabajando juntos con un mercado único reforzado conseguiremos este objetivo."
+  },
+  {
+   "archivo": "es_44.flac",
+   "audio_id": "20111025-0900-PLENARY-12-es_20111025-17:54:27_4",
+   "hablante": "96765",
+   "genero": "female",
+   "segundos": 10.86,
+   "texto": "Quiero referirme concretamente a uno de los sectores que generan más empleo en toda la Unión y que más dificultades está sufriendo en este momento las pequeñas y medianas empresas.",
+   "texto_normalizado": "quiero referirme concretamente a uno de los sectores que generan más empleo en toda la unión y que más dificultades está sufriendo en este momento las pequeñas y medianas empresas."
+  },
+  {
+   "archivo": "es_45.flac",
+   "audio_id": "20100209-0900-PLENARY-10-es_20100209-17:54:35_11",
+   "hablante": "101417",
+   "genero": "female",
+   "segundos": 7.6,
+   "texto": "Y la Presidencia española informará al Parlamento acerca de la posición del Consejo una vez que esta haya sido acordada.",
+   "texto_normalizado": "y la presidencia española informará al parlamento acerca de la posición del consejo una vez que esta haya sido acordada."
+  },
+  {
+   "archivo": "es_46.flac",
+   "audio_id": "20100209-0900-PLENARY-10-es_20100209-17:54:35_2",
+   "hablante": "101417",
+   "genero": "female",
+   "segundos": 11.96,
+   "texto": "por ello nos corresponde desempeñar un papel activo para asegurar que CITES se mantenga como una herramienta eficaz para su doble objetivo de conservación y gestión sostenible de los recursos naturales.",
+   "texto_normalizado": "por ello nos corresponde desempeñar un papel activo para asegurar que cites se mantenga como una herramienta eficaz para su doble objetivo de conservación y gestión sostenible de los recursos naturales."
+  },
+  {
+   "archivo": "es_47.flac",
+   "audio_id": "20140915-0900-PLENARY-13-es_20140915-17:51:36_0",
+   "hablante": "125049",
+   "genero": "female",
+   "segundos": 9.76,
+   "texto": "Yo creo que, como he dicho, la irresponsabilidad de la Comisión ya viene de atrás, de una política exportadora que nos llevó a estas conclusiones.",
+   "texto_normalizado": "yo creo que como he dicho la irresponsabilidad de la comisión ya viene de atrás de una política exportadora que nos llevó a estas conclusiones."
+  },
+  {
+   "archivo": "es_48.flac",
+   "audio_id": "20140915-0900-PLENARY-13-es_20140915-17:51:36_1",
+   "hablante": "125049",
+   "genero": "male",
+   "segundos": 9.48,
+   "texto": "Por eso creo que es urgente, por ejemplo, en el sector lácteo, dar marcha atrás y poner fin a esa decisión de abandonar las cuotas.",
+   "texto_normalizado": "por eso creo que es urgente por ejemplo en el sector lácteo dar marcha atrás y poner fin a esa decisión de abandonar las cuotas."
+  }
+ ],
+ "dos_voces": {
+  "archivo": "dos_voces.flac",
+  "hablantes": {
+   "A": "28407",
+   "B": "111017"
+  },
+  "segmentos": [
+   {
+    "hablante": "A",
+    "desde": 1.2,
+    "hasta": 10.979,
+    "audio_id": "20131022-0900-PLENARY-19-es_20131022-19:48:32_1",
+    "texto": "Por muchas declaraciones que usted haga en relación con imbricar, con relacionar directamente nuestra política de vecindad con los derechos humanos, la práctica es desoladora."
+   },
+   {
+    "hablante": "B",
+    "desde": 12.179,
+    "hasta": 20.878,
+    "audio_id": "20130611-0900-PLENARY-20-es_20130611-21:09:52_1",
+    "texto": "Supone un gravísimo problema —como se ha dicho— para la sostenibilidad de las poblaciones marinas y también una distorsión en el mercado."
+   },
+   {
+    "hablante": "A",
+    "desde": 22.078,
+    "hasta": 32.377,
+    "audio_id": "20131022-0900-PLENARY-19-es_20131022-19:48:32_3",
+    "texto": "Ya no voy a hablar de la Primavera Árabe, de la que ya hemos hablado y hemos criticado hasta qué punto fuimos ajenos al dolor que se estaba produciendo porque mantuvimos intactos los acuerdos de asociación."
+   },
+   {
+    "hablante": "B",
+    "desde": 33.577,
+    "hasta": 37.796,
+    "audio_id": "20130611-0900-PLENARY-20-es_20130611-21:09:52_3",
+    "texto": "En España sí se hacen controles muy rigurosos."
+   },
+   {
+    "hablante": "A",
+    "desde": 38.996,
+    "hasta": 43.876,
+    "audio_id": "20131024-0900-PLENARY-4-es_20131024-09:51:48_5",
+    "texto": "Claro, pone en riesgo la producción nacional, la producción europea, la pequeña y mediana producción"
+   },
+   {
+    "hablante": "B",
+    "desde": 45.076,
+    "hasta": 55.634,
+    "audio_id": "20130611-0900-PLENARY-20-es_20130611-21:09:52_6",
+    "texto": "Por tanto, se trata de la coordinación y la lucha, y de los instrumentos que debemos darle a usted para que el Consejo también acepte aplicar estas medidas."
+   }
+  ]
+ }
+}
