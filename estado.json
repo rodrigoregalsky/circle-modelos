@@ -1,8 +1,167 @@
 {
-  "revisado_en": null,
+  "revisado_en": "2026-11-20T16:49:54Z",
   "version": 3,
   "release": "modelos-v3",
-  "resumen": "todavia no corrio la revision diaria",
-  "eventos": [],
-  "rechazados": {}
+  "modelos": [
+    {
+      "id": "parakeet-v3",
+      "nombre": "Parakeet v3 (voz a texto)",
+      "estado": "CANDIDATO_PROBADO",
+      "detalle": "revision nueva ed5d745623 en Hugging Face; la prueba dio peor: se mantiene la vigente",
+      "prueba": [
+        {
+          "metrica": "asr_wer",
+          "vigente": 0.073597,
+          "candidato": 0.074517,
+          "empeora": true
+        },
+        {
+          "metrica": "es_wer",
+          "vigente": 0.077277,
+          "candidato": 0.077277,
+          "empeora": false
+        },
+        {
+          "metrica": "cadena_wer",
+          "vigente": 0.149254,
+          "candidato": 0.141791,
+          "empeora": false
+        },
+        {
+          "metrica": "vad_f1",
+          "vigente": 0.987029,
+          "candidato": 0.987029,
+          "empeora": false
+        },
+        {
+          "metrica": "voces_acierto",
+          "vigente": 1.0,
+          "candidato": 1.0,
+          "empeora": false
+        },
+        {
+          "metrica": "voces_error_personas",
+          "vigente": 0,
+          "candidato": 0,
+          "empeora": false
+        },
+        {
+          "metrica": "voces_separacion",
+          "vigente": 0.572596,
+          "candidato": 0.572596,
+          "empeora": false
+        }
+      ]
+    },
+    {
+      "id": "canary-180m",
+      "nombre": "Canary 180M flash (voz a texto en espanol)",
+      "estado": "SIN_CAMBIOS",
+      "detalle": "la revision 9077164e0d trae los mismos archivos"
+    },
+    {
+      "id": "silero-vad",
+      "nombre": "Silero VAD (detector de voz)",
+      "estado": "SIN_CAMBIOS",
+      "detalle": "el release de origen trae los mismos archivos"
+    },
+    {
+      "id": "titanet-small",
+      "nombre": "TitaNet small (huella de voz)",
+      "estado": "SIN_CAMBIOS",
+      "detalle": "el release de origen trae los mismos archivos"
+    }
+  ],
+  "vigente_descargable": true,
+  "copia_propia": "los 9 archivos coinciden con la ficha",
+  "prueba_vigente": {
+    "asr_wer": 0.07359705611775529,
+    "asr_errores": 80,
+    "asr_palabras": 1087,
+    "es_wer": 0.07727690892364306,
+    "es_errores": 84,
+    "es_palabras": 1087,
+    "vad_f1": 0.9870291584518003,
+    "vad_segmentos": 6,
+    "cadena_wer": 0.14925373134328357,
+    "voces_acierto": 1.0,
+    "voces_personas": 2,
+    "voces_error_personas": 0,
+    "voces_misma": 0.8521872487845551,
+    "voces_distinta": 0.27959082371328103,
+    "voces_separacion": 0.5725964250712741,
+    "segundos": 162.3
+  },
+  "resumen": "Parakeet v3 (voz a texto): CANDIDATO_PROBADO",
+  "eventos": [
+    {
+      "id": "MODELO_NUEVO:parakeet-v3:a0225c4783c161fb",
+      "tipo": "MODELO_NUEVO",
+      "fecha": "2026-11-20T16:55:40Z",
+      "modelo": "parakeet-v3",
+      "nombre": "Parakeet v3 (voz a texto)",
+      "detalle": "revision nueva ed5d745623 en Hugging Face; la prueba dio peor: se mantiene la vigente",
+      "prueba": {
+        "metrica": "asr_wer",
+        "nombre": "error de palabras",
+        "vigente": 0.073597,
+        "candidato": 0.074517,
+        "porcentaje": true,
+        "pasa": false
+      },
+      "version": 3
+    }
+  ],
+  "probados": {
+    "a0225c4783c161fb6f4ed491668a905c78fd1d02311cd2632b7e6fbe1422ec0d": {
+      "modelo": "parakeet-v3",
+      "pasa": false,
+      "prueba": [
+        {
+          "metrica": "asr_wer",
+          "vigente": 0.073597,
+          "candidato": 0.074517,
+          "empeora": true
+        },
+        {
+          "metrica": "es_wer",
+          "vigente": 0.077277,
+          "candidato": 0.077277,
+          "empeora": false
+        },
+        {
+          "metrica": "cadena_wer",
+          "vigente": 0.149254,
+          "candidato": 0.141791,
+          "empeora": false
+        },
+        {
+          "metrica": "vad_f1",
+          "vigente": 0.987029,
+          "candidato": 0.987029,
+          "empeora": false
+        },
+        {
+          "metrica": "voces_acierto",
+          "vigente": 1.0,
+          "candidato": 1.0,
+          "empeora": false
+        },
+        {
+          "metrica": "voces_error_personas",
+          "vigente": 0,
+          "candidato": 0,
+          "empeora": false
+        },
+        {
+          "metrica": "voces_separacion",
+          "vigente": 0.572596,
+          "candidato": 0.572596,
+          "empeora": false
+        }
+      ],
+      "probado_en": "2026-11-20T16:55:40Z"
+    }
+  },
+  "pendientes": {}
 }
